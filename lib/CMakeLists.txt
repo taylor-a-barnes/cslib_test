@@ -5,7 +5,7 @@ SET(CMAKE_CXX_FLAGS  "${CMAKE_CXX_FLAGS} -DZMQ_NO")
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/cslib/src/STUBS_ZMQ/)
 
 # Attempt to locate MPI
-#####find_package(MPI)
+find_package(MPI)
 if(${MPI_FOUND})
   message("CSlib located MPI")
   include_directories(${MPI_INCLUDE_PATH})
@@ -18,7 +18,7 @@ endif()
 # Collect all of the source files in CSlib_sources
 FILE(GLOB CSlib_sources cslib/src/*.cpp)
 
-add_library(cslib STATIC
+add_library(cslib SHARED
                 ${CSlib_sources})
 
 # Provide MPI link information
